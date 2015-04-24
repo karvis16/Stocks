@@ -1,6 +1,6 @@
 import sys
 
-# this file create some basic windows
+# this file create a mock welcome/login screen
 
 from PySide.QtCore import *
 from PySide.QtGui import *

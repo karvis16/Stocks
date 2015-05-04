@@ -137,7 +137,6 @@ label2 = QLabel("stock info", parent = stockOverviewWidget)
 label3 = QLabel("options:", parent = optionsWidget)
 
 
-"""
 # test player account
 # create the list of stocks that are owned
 # test stocks now with: 500 of google, disney and microsoft and $5000 cash
@@ -150,14 +149,12 @@ for i in stocksOwned:
     defaultPlayer.addStock(i[0], i[1])
 defaultPlayer.setCash(cashOwned)
 score = defaultPlayer.calcScore()
-"""
-defaultPlayer = Player("Bob", "pepperoni", "hard")
 
-# create the personalized welcome screen and displaythe score
+# create the personalized welcome screen and display the score
 welcomeText = "Welcome {}".format(defaultPlayer.getName())
+print welcomeText
 welcomeLabel = QLabel("<font size=18>"+welcomeText+"</font>", parent=statusOverviewWidget)
 welcomeLabel.move(100,10)
-score = 42
 scoreText = QLabel("Your current score is: {}".format(score), parent=statusOverviewWidget)
 scoreText.move(10, 100) 
 scoreText.show()

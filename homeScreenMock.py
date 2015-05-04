@@ -152,12 +152,12 @@ score = defaultPlayer.calcScore()
 
 # create the personalized welcome screen and display the score
 welcomeText = "Welcome {}".format(defaultPlayer.getName())
-print welcomeText
 welcomeLabel = QLabel("<font size=18>"+welcomeText+"</font>", parent=statusOverviewWidget)
 welcomeLabel.move(100,10)
+welcomeLabel.setFont('Courier')
+welcomeLabel.show()
 scoreText = QLabel("Your current score is: {}".format(score), parent=statusOverviewWidget)
 scoreText.move(10, 100) 
-scoreText.show()
 
 
 

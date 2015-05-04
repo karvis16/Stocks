@@ -127,7 +127,7 @@ modified versions may be distributed without limitation."""
 )
 
 
-qApp = QtGui.QApplication(sys.argv)
+qApp = QtGui.QApplication.instance
 
 aw = ApplicationWindow()
 aw.setWindowTitle("%s" % progname)

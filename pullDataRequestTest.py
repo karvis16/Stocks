@@ -1,9 +1,8 @@
 """
 Test file to pull some financial and maps API information and process them in any meaningful way
 """
-def PullCompanyInfo(yearsBack = 1):
+def PullCompanyInfo(yearsBack = 1, Companies=['GOOG']):
     from urllib2 import Request, urlopen, URLError
-
     YahooPullRequestStr = "http://ichart.finance.yahoo.com/table.csv?"
     """
     s symbol of the stock
@@ -26,7 +25,6 @@ def PullCompanyInfo(yearsBack = 1):
     endyear = 2014
     
     
-    Companies = ['GOOG', 'YHOO', 'MSFT', 'GM', 'F', 'BA', 'DIS']
     RequestStrings = []
     
     for i in Companies:
@@ -64,7 +62,7 @@ def CleanPulledInfo(pulledInfo):
     print "Data cleaned"
     return finalData
     
-def PlotInfo(finalData, index = 0, labelIt = True, subbed = True):
+def PlotInfo(finalData,  canvas = current, index = 0, labelIt = True, subbed = True):
     import pylab
     if index == 0:
         n = len(finalData)
@@ -84,7 +82,6 @@ def PlotInfo(finalData, index = 0, labelIt = True, subbed = True):
     if labelIt:
         pylab.legend()
     pylab.show()
-
 
 a = PullCompanyInfo()
 b = CleanPulledInfo(a)

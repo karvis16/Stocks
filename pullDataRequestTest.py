@@ -1,7 +1,25 @@
 """
 Test file to pull some financial and maps API information and process them in any meaningful way
 """
-def PullCompanyInfo(yearsBack = 1, Companies=['GOOG']):
+
+def PullCompanyInfo(name):
+    from urllib2 import Request, urlopen, URLError
+    YahooPullRequestStr = "http://finance.yahoo.com/d/quotes.csv?s="
+    pullRequest = YahooPullRequestStr + name + "&f=nsl1op"
+    request = Request(pullRequest)
+    try:
+        print "pulling data on {}".format(name)
+        response = urlopen(request)
+        data = response.read()
+        d = data.split(',')
+        fullName = d[0].strip('"')
+        curVal = float(d[2])
+        answer = (fullName, curVal)
+        print "pull successful"
+        return answer
+    except URLError, e:
+        print "pull request failed", e
+def PullCompanyHistory(yearsBack = 1, Companies=['GOOG']):
     from urllib2 import Request, urlopen, URLError
     YahooPullRequestStr = "http://ichart.finance.yahoo.com/table.csv?"
     """
@@ -62,7 +80,7 @@ def CleanPulledInfo(pulledInfo):
     print "Data cleaned"
     return finalData
     
-def PlotInfo(finalData,  canvas = current, index = 0, labelIt = True, subbed = True):
+def PlotInfo(finalData,  canvas = "", index = 0, labelIt = True, subbed = True):
     import pylab
     if index == 0:
         n = len(finalData)
@@ -83,6 +101,10 @@ def PlotInfo(finalData,  canvas = current, index = 0, labelIt = True, subbed = T
         pylab.legend()
     pylab.show()
 
-a = PullCompanyInfo()
+"""
+a = PullCompanyHistory()
 b = CleanPulledInfo(a)
 PlotInfo(b)
+"""
+x = PullCompanyInfo("DIS")
+print x
